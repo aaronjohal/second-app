@@ -8,14 +8,39 @@
 
 import UIKit
 
+
+@IBDesignable
+
 class CurrencyTextField: UITextField {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    
+    override func prepareForInterfaceBuilder() {
+        customiseView()
     }
-    */
-
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        customiseView()
+        
+    }
+    
+    func customiseView(){
+        
+        
+        backgroundColor = #colorLiteral(red: 0.9961728454, green: 0.9902502894, blue: 1, alpha: 0.2539865154)
+        layer.cornerRadius = 5.0
+        textAlignment = .center
+        
+        
+        if let p = placeholder {         //if p is nil it won't get in here
+            let placeholderStyling = NSAttributedString(string: p, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+            
+            attributedPlaceholder = placeholderStyling //attributedPlaceholder is a property of UI textfield
+            textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            
+        }
+        
+        
+    }
+    
 }
